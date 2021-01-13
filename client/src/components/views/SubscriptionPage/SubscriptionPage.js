@@ -1,4 +1,4 @@
-import React, {useEffect, useState}  from 'react';
+import React, {useEffect, useState} from 'react'
 import { FaCode } from "react-icons/fa";
 import {Card, Icon, Avaar, Col, Typography, Row, Avatar} from 'antd';
 import axios from 'axios';
@@ -6,13 +6,17 @@ import moment from 'moment';
 const { Title } = Typography;
 const { Meta } = Card;
 
-function LandingPage() {
+function SubscriptionPage() {
 
     const [Video, setVideo] = useState([])
 
     useEffect(() => {
+
+        const subscriptionVariables = {
+            userFrom : localStorage.getItem('userId')
+        }
         
-        axios.get('/api/video/getVideos')
+        axios.post('/api/video/getSubscriptionVideos', subscriptionVariables)
             .then(response => {
                 if (response.data.success){
                     console.log(response.data)
@@ -22,8 +26,8 @@ function LandingPage() {
                 }
             })
     }, [])
-    
-    const renderCards = Video.map((video, index) => {
+
+const renderCards = Video.map((video, index) => {
 
         var minutes = Math.floor(video.duration / 60);
         var seconds = Math.floor((video.duration - minutes * 60));
@@ -65,4 +69,4 @@ function LandingPage() {
     )
 }
 
-export default LandingPage
+export default SubscriptionPage
