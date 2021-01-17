@@ -69,7 +69,6 @@ router.get('/getVideos', (req, res) => {
         })
 })
 
-
 router.post('/getSubscriptionVideos', (req, res) => {
 
     Subscriber.find({userFrom : req.body.userFrom})
@@ -89,7 +88,6 @@ router.post('/getSubscriptionVideos', (req, res) => {
                     res.status(200).json({success:true, videos })
                 })
         })
-
 })
 
 router.post('/thumbnail', (req, res) => {
@@ -124,7 +122,6 @@ router.post('/thumbnail', (req, res) => {
         size:'320x240',
         filename: 'thumbnail-%b.png'
     })
-    
 })
 
 module.exports = router;
